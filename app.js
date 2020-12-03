@@ -2,9 +2,8 @@ let getKeyDates = doAjax({
     url:`actions.php`,
     type: 'POST',
     data:JSON.stringify({
-        'action':'Get Key Dates'
-     //   ,
-      //  'country':'nz'//au or nz
+        'action':'Get Key Dates',
+        'country':'nz'//au or nz
     })
 });
 
