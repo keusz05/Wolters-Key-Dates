@@ -9,104 +9,76 @@ let getKeyDates = doAjax({
     })
 });
 
-
 getKeyDates.then(data=>{
     let resp = JSON.parse(data);
-    console.log(data,'test');
+    let output = resp.response.data;  
     if(resp.status){
-        let output = resp.response.data;  
-        let pushItem = [];
-        console.log(output);
-            output.map(function(i){
-                let id =  i.id;
-                let current = i.current;
-                let keydates =  i.key_dates;
-                let month =  i.month;
-                let notes =  i.notes;
-                
-                pushItem.push({
-                    'id': id,
-                    'current': current,
-                    'keydates': keydates,
-                    'month': month,
-                    'notes': notes
-                });
-            }); //map
-            appenditem(pushItem);
+        output.map(function(i){
+            let dataYear=[];
+            let arrYrMonthSplit =  i.id.split('-');
+
+            dataYear.push({
+                'month': arrYrMonthSplit[0],
+                'year': arrYrMonthSplit[1],
+            });
+            i.id.replace(/\s/g, '');
+
+            var newDate = new Date();
+            var yearToday = newDate.getFullYear();
+            
+            dataYear.map(function(a){
+                if(parseInt(a.year) >= parseInt(yearToday)){
+                    let appendData=`<div class="eaKeyDate CurrentYear" data-id='${i.id}'>
+                                        <span class="eaKeyYear">${a.year}</span>
+                                        <span class="eaKeyMonth">${defineMonth(a.month)}</span>
+                                    </div>`;         
+                    $('.mainWrapperKeyDate').append(appendData); 
+                }else{
+            
+                    let appendData=`<div class="eaKeyDate" data-id='${i.id}'>
+                                        <span class="eaKeyYear">${a.year}</span>
+                                        <span class="eaKeyMonth">${defineMonth(a.month)}</span>
+                                    </div>`;    
+                    $('.mainWrapperKeyDateArch').append(appendData);
+                }// end if
+            });//dataYear Map
+        });//map
     }else{
         console.log(resp);
     }
-});
 
-
-function appenditem(pushItem) {
-    pushItem.map(function(data) {
-
-        let dataYear=[];
-        let arrYrMonthSplit =  data.id.split('-');
-
-        dataYear.push({
-            'month': arrYrMonthSplit[0],
-            'year': arrYrMonthSplit[1],
-        });
-        data.id.replace(/\s/g, '');
-            dataYear.map(function(a){
-                    DifineMonth(a.month)
-                    if(a.year =="2020"){
-                    
-                
-                        let appendData=`<div class="eaKeyDate CurrentYear" data-id='${data.id}'>
-                                            <span class="eaKeyYear">${a.year}</span>
-                                            <span class="eaKeyMonth">${monthData}</span>
-                                        </div>`;         
-                                        $('.mainWrapperKeyDate').append(appendData); 
-                    }else{
-                
-                        let appendData=`<div class="eaKeyDate" data-id='${data.id}'>
-                                            <span class="eaKeyYear">${a.year}</span>
-                                            <span class="eaKeyMonth">${monthData}</span>
-                                        </div>`;    
-                        $('.mainWrapperKeyDateArch').append(appendData);
-                    }// end if
-
-            });//dataYear Map
-    }); //pushItem Map kdEachResulWrapper
-
-        $(".eaKeyDate").on("click", function(){ 
-            $('.mainWrapperKeyDate').toggleClass('hideCurrent');
-  
+    $('.mainWrapperKeyDate').on('click','.eaKeyDate', function() {
+        $('.mainWrapperKeyDate').toggleClass('hideCurrent');
         $('.kdEachResulWrapper').toggleClass('showDatesEach');
         $('.kdBtnLinkPast').toggleClass('hidePassBtn');
-            let xdate = $(this).attr("data-id");
-            let trimByID = pushItem.filter(x => x.id == xdate);
-            removeDuplicate(trimByID);
-            displayResult(trimByID);
-            $('.kdBtnLink').toggleClass('hideBtnLink'); // hide BTN TOP RIGHT
-        });
-    
+        let xdate = $(this).attr("data-id");
+        let trimByID = output.filter(x => x.id == xdate);
+        console.log(trimByID);
+        removeDuplicate(trimByID);
+        displayResult(trimByID);
+        $('.kdBtnLink').toggleClass('hideBtnLink'); // hide BTN TOP RIGHT
+    });
+});
+
+//mainWrapperKeyDate
 
 
-        // $('.kdBtnLink').on("click", function(){
-        //     $(this).text(function(i, text){
-        //         return text === "Back to Key Dates" ? "Key Dates Archives" : "Back to Key Dates";
-        //     });
-        // });
-        $(".kdresultBtn").on("click", function(){
-            $('.kdBtnLinkCurrent').toggleClass('hidePassBtn'); // SHOW BTN TOP RIGHT
-            $('.kdBtnLinkPast').toggleClass('hidePassBtn');
-            // $('.mainWrapperKeyDate ').toggleClass('hideCurrent');
-            // $('.kdEachResulWrapper ').toggleClass('showDatesEach');
-        });
-        
-    //     $('.kdBtnLinkCurrent').click(function(){
-    //    $(this).toggleClass('hideCurrentBtn');
-    //     });
-                
- 
 
-         
-   
-} // function appenditem
+// $('.kdBtnLink').on("click", function(){
+//     $(this).text(function(i, text){
+//         return text === "Back to Key Dates" ? "Key Dates Archives" : "Back to Key Dates";
+//     });
+// });
+$(".kdresultBtn").on("click", function(){
+    $('.kdBtnLinkCurrent').toggleClass('hidePassBtn'); // SHOW BTN TOP RIGHT
+    $('.kdBtnLinkPast').toggleClass('hidePassBtn');
+    // $('.mainWrapperKeyDate ').toggleClass('hideCurrent');
+    // $('.kdEachResulWrapper ').toggleClass('showDatesEach');
+});
+
+//     $('.kdBtnLinkCurrent').click(function(){
+//    $(this).toggleClass('hideCurrentBtn');
+//     });
 
 
 $('.kdBtnLinkCurrent').click(function(){
@@ -127,7 +99,7 @@ function displayResult(data){
     data.map(function(i){
         $('.resultTableBody').html("");
         $('.kdresultDate').html("Key Dates -  "+ i.month);
-            i.keydates.map(function(kd){
+            i.key_dates.map(function(kd){
                 let appendData=`<div class="kdDateRusults">
                                     <div class="kdDateData"> ${kd.date}</div>
                                     <div class="kdCategData"><em>${kd.category}</em></div>
@@ -140,7 +112,9 @@ function displayResult(data){
     }); //end map
 }//end function
 
-function DifineMonth(data){
+function defineMonth(data){
+    let monthData;
+
     switch(data) {
         case "january":
             monthData = "Jan";
@@ -192,7 +166,8 @@ function DifineMonth(data){
 
         default:
             monthData = "JAN";
-    }                             
+    } 
+    return monthData;                            
 }//DifineMonth
 
 
