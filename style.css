@@ -1,0 +1,282 @@
+body{
+    margin:50px auto;
+    max-width: 960px;
+}
+.kdMainBtnWrapper{
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+.kdMainText{
+    display: block;
+    position: relative;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    font-family: 'PT Sans', sans-serif;
+    color: #000;
+    font-size:42px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+.kdBtnLinkCurrent{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 130px;
+    height: 30px;
+    font-family: 'PT Sans', sans-serif;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    background: #000;
+    cursor: pointer;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    padding: 6px 15px;
+}
+.kdBtnLinkPast{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 130px;
+    height: 30px;
+    font-family: 'PT Sans', sans-serif;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    background: #000;
+    cursor: pointer;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    padding: 6px 15px;
+}
+
+.mainWrapperKeyDate{
+    display:flex;
+    position: relative;
+    justify-content: flex-start;
+    align-items: center;
+    height:auto;
+    width: 100%;
+    flex-wrap: wrap;
+    transition: all ease .5s;
+}
+
+.mainWrapperKeyDateArch{
+    display:none;
+    position: relative;
+    justify-content: flex-start;
+    align-items: center;
+    height:auto;
+    width: 100%;
+    flex-wrap: wrap;
+    transition: all ease .5s;
+}
+.mainWrapperKeyDate a{
+    text-decoration: none !important;
+    cursor: pointer;
+}
+.eaKeyDate{
+    display: block;
+    position: relative;
+    width: 19.6%;
+    margin: 0.2%;
+    float: left;
+    text-transform: uppercase;
+    text-align: center;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: solid 1px #ccc;
+    cursor: pointer;
+}
+.eaKeyYear {
+    display: block;
+    position: relative;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: normal;
+    padding: 3px 0;
+    color: #fff;
+    font-weight: 700;
+    font-family: 'PT Sans', sans-serif;
+    background: #bbb;
+    cursor: pointer;
+}
+.eaKeyDate.CurrentYear .eaKeyYear{
+    background: #e56600;
+}
+.eaKeyDate.CurrentYear .eaKeyMonth {
+    background: #fff;
+    color: #333;
+}
+.eaKeyDate:hover .eaKeyMonth{
+    background: #e0e0e0;
+}
+.eaKeyMonth{
+    display: block;
+    text-transform: uppercase;
+    background: #e0e0e0;
+    color: #888;
+    line-height: normal;
+    font-size: 32px;
+    font-weight: 700;
+    padding: 15px 0px;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.kdresultDate{
+    position: relative;
+    display: block;
+    height: auto;
+    width: 100%;
+    margin-bottom: 20px;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.kdTitleWrapper{
+    display:flex;
+    position: relative;
+    height: auto;
+    width: 100%;
+
+}
+
+.kdDateLabel, .kdCategLabel, .kdDespLabel{
+    display:block;
+    position: relative;
+    height: auto;
+    width: 100%;
+    color: #000;
+    font-size:16px;
+    font-weight: 700;
+    font-family: 'PT Sans', sans-serif;
+    margin-bottom:30px;
+}
+
+.kdDateLabel{
+    display:block;
+    position: relative;
+    height: auto;
+    width: 15%;
+}
+
+.kdCategLabel{
+    display:block;
+    position: relative;
+    height: auto;
+    width: 18%;
+}
+
+.kdDespLabel{
+    display:block;
+    position: relative;
+    height: auto;
+    width: 70%;
+}
+.kdDateRusults{
+    display:flex;
+    position: relative;
+    height: auto;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.kdDateData{
+    display:block;
+    position: relative;
+    height: auto;
+    width: 15%;
+    color: #333;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'PT Sans', sans-serif;
+    line-height: 24px;
+}
+.kdCategData{
+    display:block;
+    position: relative;
+    height: auto;
+    width: 18%;
+    color: #333;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'PT Sans', sans-serif;
+    line-height: 24px;
+}
+.kdDespData{
+    display:block;
+    position: relative;
+    height: auto;
+    width: 70%;
+    color: #333;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'PT Sans', sans-serif;
+    line-height: 24px;
+}
+.kdDespData a{
+    font-weight: 700;
+    color: #e56600;
+    text-decoration: none;
+    cursor: pointer;
+}
+.kdDespData p{
+    margin:0;
+}
+
+
+.kdEachResulWrapper{
+    display:none;
+    position: relative;
+    height: auto;
+    width: 100%;
+    transition: all ease .5s;
+}
+.kdresultBtn{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 170px;
+    background: #000;
+    color:#fff;
+    transition: all 0.3s ease 0s;
+    border-radius: 30px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 16px;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+}
+.kdresultBtn:hover{
+    background: #e56600;
+}
+.showDatesEach{
+    display: block !important;
+}
+.hideCurrent{
+    display:none !important;
+}
+.showArchive{
+    display: block !important;
+}
+.hideBtnLink{
+    display:none !important;
+}
+.hidePassBtn{
+    display:none !important;
+}
+.showCurrentBtn{
+    display:show !important;
+}
