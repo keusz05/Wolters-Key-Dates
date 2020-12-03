@@ -1,11 +1,10 @@
 <?php
-
 function getKeyDates($data){
-
     $curl = curl_init();
 
 	curl_setopt_array($curl, array(
-	  CURLOPT_URL => 'https://zauaedudamedia.blob.core.windows.net/prd/'.$data->country.'_keydates.json',
+        CURLOPT_URL => 'https://zauaedudamedia.blob.core.windows.net/prd/au_keydates.json',
+	//  CURLOPT_URL => 'https://zauaedudamedia.blob.core.windows.net/prd/'.$data->country.'_keydates.json',
 	  CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,

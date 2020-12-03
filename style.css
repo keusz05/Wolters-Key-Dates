@@ -1,5 +1,5 @@
 body{
-    margin:50px auto;
+    margin:150px auto;
     max-width: 960px;
 }
 .kdMainBtnWrapper{
@@ -18,29 +18,11 @@ body{
     height: auto;
     font-family: 'PT Sans', sans-serif;
     color: #000;
-    font-size:42px;
+    font-size:36px;
     font-weight: 700;
     margin-bottom: 30px;
 }
 .kdBtnLink{
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 130px;
-    height: 30px;
-    font-family: 'PT Sans', sans-serif;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
-    background: #000;
-    cursor: pointer;
-    border-radius: 30px;
-    margin-bottom: 30px;
-    padding: 6px 15px;
-}
-.kdBtnLinkPast{
     display: flex;
     position: relative;
     justify-content: center;
@@ -132,7 +114,6 @@ body{
     padding: 15px 0px;
     font-family: 'PT Sans', sans-serif;
 }
-
 .kdresultDate{
     position: relative;
     display: block;
@@ -143,7 +124,6 @@ body{
     font-weight: bold;
     font-size: 36px;
 }
-
 .kdTitleWrapper{
     display:flex;
     position: relative;
@@ -151,7 +131,6 @@ body{
     width: 100%;
 
 }
-
 .kdDateLabel, .kdCategLabel, .kdDespLabel{
     display:block;
     position: relative;
@@ -163,7 +142,6 @@ body{
     font-family: 'PT Sans', sans-serif;
     margin-bottom:30px;
 }
-
 .kdDateLabel{
     display:block;
     position: relative;
@@ -177,7 +155,6 @@ body{
     height: auto;
     width: 18%;
 }
-
 .kdDespLabel{
     display:block;
     position: relative;
@@ -233,8 +210,6 @@ body{
 .kdDespData p{
     margin:0;
 }
-
-
 .kdEachResulWrapper{
     display:none;
     position: relative;
@@ -261,22 +236,4 @@ body{
 }
 .kdresultBtn:hover{
     background: #e56600;
-}
-.showDatesEach{
-    display: block !important;
-}
-.hideCurrent{
-    display:none !important;
-}
-.showArchive{
-    display: block !important;
-}
-.hideBtnLink{
-    display:none !important;
-}
-.hidePassBtn{
-    display:none !important;
-}
-.showCurrentBtn{
-    display:show !important;
 }

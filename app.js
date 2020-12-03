@@ -1,11 +1,10 @@
-// NOTE NG KA ERROR PO  SA CONNECTION GINAMIT KO PO MUNA ANG LUMANG AJAX FOR NOW  ETO PO ANG ERROR https://prnt.sc/vt47m6
-
 let getKeyDates = doAjax({
     url:`actions.php`,
     type: 'POST',
     data:JSON.stringify({
-        'action':'Get Key Dates',
-        'country':'nz'//au or nz
+        'action':'Get Key Dates'
+     //   ,
+      //  'country':'nz'//au or nz
     })
 });
 
@@ -34,7 +33,6 @@ getKeyDates.then(data=>{
                                     </div>`;         
                     $('.mainWrapperKeyDate').append(appendData); 
                 }else{
-            
                     let appendData=`<div class="eaKeyDate" data-id='${i.id}'>
                                         <span class="eaKeyYear">${a.year}</span>
                                         <span class="eaKeyMonth">${defineMonth(a.month)}</span>
@@ -43,56 +41,20 @@ getKeyDates.then(data=>{
                 }// end if
             });//dataYear Map
         });//map
-    }else{
-        console.log(resp);
     }
 
-    $('.mainWrapperKeyDate').on('click','.eaKeyDate', function() {
-        $('.mainWrapperKeyDate').toggleClass('hideCurrent');
-        $('.kdEachResulWrapper').toggleClass('showDatesEach');
-        $('.kdBtnLinkPast').toggleClass('hidePassBtn');
+    $('.mainWrapperKeyDate, .mainWrapperKeyDateArch').on('click','.eaKeyDate', function() {
+        $('.mainWrapperKeyDate').hide();
+        $('.mainWrapperKeyDateArch').hide();
+        $('.kdEachResulWrapper').show();
+        $('.kdBtnLink').hide();
+        $('.kdMainText').hide();
         let xdate = $(this).attr("data-id");
         let trimByID = output.filter(x => x.id == xdate);
-        console.log(trimByID);
-        removeDuplicate(trimByID);
-        displayResult(trimByID);
-        $('.kdBtnLink').toggleClass('hideBtnLink'); // hide BTN TOP RIGHT
+            removeDuplicate(trimByID);
+            displayResult(trimByID);
     });
 });
-
-//mainWrapperKeyDate
-
-
-
-// $('.kdBtnLink').on("click", function(){
-//     $(this).text(function(i, text){
-//         return text === "Back to Key Dates" ? "Key Dates Archives" : "Back to Key Dates";
-//     });
-// });
-$(".kdresultBtn").on("click", function(){
-    $('.kdBtnLinkCurrent').toggleClass('hidePassBtn'); // SHOW BTN TOP RIGHT
-    $('.kdBtnLinkPast').toggleClass('hidePassBtn');
-    // $('.mainWrapperKeyDate ').toggleClass('hideCurrent');
-    // $('.kdEachResulWrapper ').toggleClass('showDatesEach');
-});
-
-//     $('.kdBtnLinkCurrent').click(function(){
-//    $(this).toggleClass('hideCurrentBtn');
-//     });
-
-
-$('.kdBtnLinkCurrent').click(function(){
-    $(this).toggleClass('hidePassBtn');
-    $('.kdBtnLinkPast').toggleClass('hidePassBtn');
-    $('.mainWrapperKeyDate ').toggleClass('hideCurrent');
-    $('.mainWrapperKeyDateArch ').toggleClass('showArchive');
- });    
- $('.kdBtnLinkPast').click(function(){
-    $(this).toggleClass('hidePassBtn');
-    $('.kdBtnLinkCurrent').toggleClass('hidePassBtn');
-    $('.mainWrapperKeyDate ').toggleClass('hideCurrent');
-    $('.mainWrapperKeyDateArch ').toggleClass('showArchive');
- });
 
 // result each page Data
 function displayResult(data){
@@ -106,9 +68,7 @@ function displayResult(data){
                                     <div class="kdDespData">${kd.description}</div>
                                 </div>`;
                 $('.resultTableBody').append(appendData);
-
             });
-
     }); //end map
 }//end function
 
@@ -168,8 +128,32 @@ function defineMonth(data){
             monthData = "JAN";
     } 
     return monthData;                            
-}//DifineMonth
+}//defineMonth
 
+$(".kdresultBtn").on('click', function(){
+    $('.kdEachResulWrapper').hide();
+    $('.mainWrapperKeyDate').show();
+    $('.kdBtnLink').show();
+    $('.kdMainText').show();
+    $('.kdBtnLink').text('Key Dates Archives');
+    $('.kdBtnLink').attr('data-btnData','present');
+});
+
+$('.kdBtnLink').on('click', function(){
+    let x=  $(this).attr('data-btnData');
+        if (x=="present"){
+            $(this).attr('data-btnData','past');
+            $(this).text('Back to Key Dates');
+            $('.mainWrapperKeyDate').hide();
+            $('.mainWrapperKeyDateArch').show();
+        }
+        if(x=="past"){
+            $(this).attr('data-btnData','present');
+            $(this).text('Key Dates Archives');
+            $('.mainWrapperKeyDate').show();
+            $('.mainWrapperKeyDateArch').hide();
+        }
+});
 
 function removeDuplicate(arr){
     return uniqueItems = Array.from(new Set(arr))
