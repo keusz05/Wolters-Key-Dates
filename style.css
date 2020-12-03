@@ -22,7 +22,7 @@ body{
     font-weight: 700;
     margin-bottom: 30px;
 }
-.kdBtnLinkCurrent{
+.kdBtnLink{
     display: flex;
     position: relative;
     justify-content: center;
