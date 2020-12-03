@@ -12,45 +12,31 @@ let getKeyDates = doAjax({
 
 getKeyDates.then(data=>{
     let resp = JSON.parse(data);
-    console.log(data,'weak');
+    console.log(data,'test');
     if(resp.status){
-        let keyDates = resp.response.data;
-        keyDates.map(function(i){
-           
-        });
-    }else{
-        console.log(resp);
-    }
-});
-
-$.ajax({
-    url:"keydates.json",
-    method:"GET",
-    crossdomain:true,
-    success:function(response){
-        let output = response.data;  
+        let output = resp.response.data;  
         let pushItem = [];
-               output.map(function(i){
-                 let id =  i.id;
-                 let current = i.current;
-                 let keydates =  i.key_dates;
-                 let month =  i.month;
-                 let notes =  i.notes;
-
-                 pushItem.push({
+        console.log(output);
+            output.map(function(i){
+                let id =  i.id;
+                let current = i.current;
+                let keydates =  i.key_dates;
+                let month =  i.month;
+                let notes =  i.notes;
+                
+                pushItem.push({
                     'id': id,
                     'current': current,
                     'keydates': keydates,
                     'month': month,
                     'notes': notes
                 });
-               }); //map
-         appenditem(pushItem);
-    
-    }//success
-
-    
-});//ajax 
+            }); //map
+            appenditem(pushItem);
+    }else{
+        console.log(resp);
+    }
+});
 
 
 function appenditem(pushItem) {
