@@ -1,9 +1,10 @@
+let country ="au"
 let getKeyDates = doAjax({
-    url:`actions.php`,
+    url:`https://cdev.trilogycap.co/customers/wolters-kluwer/keydates/actions.php`,
     type: 'POST',
     data:JSON.stringify({
         'action':'Get Key Dates',
-        'country':'nz'//au or nz
+        'country':country//au or nz
     })
 });
 
@@ -24,7 +25,21 @@ getKeyDates.then(data=>{
             var newDate = new Date();
             var yearToday = newDate.getFullYear();
             
+
+
+            // let xdate = $(this).attr("data-id");
+            // let trimByID = output.filter(x => x.id == xdate);
+            // removeDuplicate(trimByID);
+            // displayResult(data);
+  
+       
+
+
+            $('.kdMonthDropdown').append(`<option data-month='${i.id}'>${i.month}</option>`);
+        
+
             dataYear.map(function(a){
+           
                 if(parseInt(a.year) >= parseInt(yearToday)){
                     let appendData=`<div class="eaKeyDate CurrentYear" data-id='${i.id}'>
                                         <span class="eaKeyYear">${a.year}</span>
@@ -40,7 +55,21 @@ getKeyDates.then(data=>{
                 }// end if
             });//dataYear Map
         });//map
+
     }
+
+
+        let LastMonthText =$('.kdMonthDropdown option:last-child').val();
+        $('.kdMonthDropdown').val(LastMonthText);
+        let lastMonthId = $(".kdMonthDropdown option:last-child").val().replace(/\s+/g, '-').toLowerCase();
+        let trimByID = output.filter(x => x.id == lastMonthId);
+        displayResult(trimByID);
+
+        $('.kdDropdownWrapper').on('click','.kdDropdownBtn', function() {
+            let selectedMonth =$(".kdMonthDropdown option:selected").val().replace(/\s+/g, '-').toLowerCase();
+            let trimByID = output.filter(x => x.id == selectedMonth);
+            displayResult(trimByID);
+        });
 
     $('.mainWrapperKeyDate, .mainWrapperKeyDateArch').on('click','.eaKeyDate', function() {
         $('.mainWrapperKeyDate').hide();
@@ -61,6 +90,7 @@ function displayResult(data){
         $('.resultTableBody').html("");
         $('.kdresultDate').html("Key Dates -  "+ i.month);
             i.key_dates.map(function(kd){
+              
                 let appendData=`<div class="kdDateRusults">
                                     <div class="kdDateData"> ${kd.date}</div>
                                     <div class="kdCategData"><em>${kd.category}</em></div>
@@ -70,6 +100,9 @@ function displayResult(data){
             });
     }); //end map
 }//end function
+
+// result each page Data
+
 
 function defineMonth(data){
     let monthData;

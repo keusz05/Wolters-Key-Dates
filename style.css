@@ -217,6 +217,14 @@ body{
     width: 100%;
     transition: all ease .5s;
 }
+
+.kdEachResulWrapperBasic{
+    display:block;
+    position: relative;
+    height: auto;
+    width: 100%;
+    transition: all ease .5s;
+}
 .kdresultBtn{
     display: flex;
     position: relative;
@@ -236,4 +244,44 @@ body{
 }
 .kdresultBtn:hover{
     background: #e56600;
+}
+.kdDropdownWrapper{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    height: auto;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.kdMonthDropdown{
+    display: block;
+    position: relative;
+    height: auto;
+    height: 35px;
+    width: 180px;
+    font-size: 14px;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    margin-right: 10px;
+    outline: none !important;
+}
+
+.kdDropdownBtn{
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #fff;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    background: #000;
 }
